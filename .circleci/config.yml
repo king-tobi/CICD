@@ -1,25 +1,18 @@
 version: 2.1
 
-#Here i'm passing my id as a psarasmeter, to make it parameterized and use pipeline variables instead of environment varialbles
+jobs: 
 
-
-commands: 
-  print_pipeline_id:
-    parameters:
-      id:
-        type: string
-    steps:
-      - run: echo << pipeline_id >>
-
-jobs:
-  my_jobs:
+  my_failed_job:
     docker:
       - image: circleci/node:13.8.0
-    steps:
-      - print_pipeline_id:
-          id: << pipeline_id >>
-
-workflows: 
+    steps: 
+      - run: exit 1
+      - run: 
+          name: error code
+          command: echp "There is an error guy"
+          when: on_fail
+  
+workflows:
   my_workflows:
     jobs:
-      - my_jobs 
+      - my_failed_jobs
