@@ -1,9 +1,15 @@
 version: 2.1
 
+#Here i'm passing my id as a psarasmeter, to make it parameterized and use pipeline variables instead of environment varialbles
+
+
 commands: 
   print_pipeline_id:
+    parameters:
+      id:
+        type: string
     steps:
-      - run: echo ${CIRCLE_WORKFLOW_ID}
+      - run: echo << pipeline_id >>
 
 jobs:
   my_jobs:
