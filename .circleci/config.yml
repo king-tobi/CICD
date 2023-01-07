@@ -2,7 +2,7 @@ version: 2.1
 
 jobs: 
 
-  my_failed_job:
+  my_failed_jobs:
     docker:
       - image: circleci/node:13.8.0
     steps: 
