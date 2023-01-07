@@ -2,17 +2,19 @@ version: 2.1
 
 jobs: 
 
-  my_failed_jobs:
+  my_failed_job:
     docker:
       - image: circleci/node:13.8.0
     steps: 
       - run: exit 1
       - run: 
           name: error code
-          command: echp "There is an error guy"
+          command: echo "There is an error guy"
           when: on_fail
   
 workflows:
   my_workflows:
     jobs:
-      - my_failed_jobs
+      - my_failed_job
+
+    
